@@ -2,7 +2,7 @@ import "../../Style.css";
 
 const Title = () => {
   return (
-    <h1 className="font-Neonderthaw font-100px">Mewy</h1>
+    <h1 className="font-Neonderthaw font-title">Mewy</h1>
   );
 };
 
