@@ -1,4 +1,4 @@
-import "./Home.css";
+import "../../Style.css";
 import Title from "../organisms/Title";
 import Cards from "../organisms/Cards";
 
@@ -14,8 +14,8 @@ const Home = () => {
           </div>
       </div>
 
-      <div className="col-md-6 p-0 bg-white h-md-100 loginarea">
-          <div className="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
+      <div className="col-md-6 p-0 bg-indigo h-md-100 loginarea">
+          <div className="d-md-flex align-items-center h-md-100 p-5 justify-content-center text-white">
               <Cards />
           </div>
       </div>
