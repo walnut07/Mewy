@@ -12,13 +12,40 @@
   background-color: #000633;
 }
 
+.bg-purple-gradient {
+  background: linear-gradient(180deg, #FF5DA2 24.48%, #9C19E0 62.5%, #000633 100%);
+}
+
+.content-fit {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-width {
+  width: 14rem;
+}
+
 @media (min-width: 768px) {
   .h-md-100 { height: 100vh; }
 }
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-margin {
+  margin: 10px;
+}
+
 .btn-round { 
   border-radius: 30px;
 }
 
 .text-cyan { 
   color: #35bdff; 
+}
+
+.text-indigo{
+  color: #000633;
 }

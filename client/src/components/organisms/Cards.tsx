@@ -1,6 +1,11 @@
+import Card from "../molecules/Card";
+
 const Cards = () => {
   return (
-      <h1>Cards</h1>
+    <section className="flex-wrap">
+      <Card />
+      <Card />
+    </section>
   );
 };
 

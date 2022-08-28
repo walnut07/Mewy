@@ -14,7 +14,7 @@ const Home = () => {
           </div>
       </div>
 
-      <div className="col-md-6 p-0 bg-indigo h-md-100 loginarea">
+      <div className="col-md-6 p-0 bg-indigo h-md-100">
           <div className="d-md-flex align-items-center h-md-100 p-5 justify-content-center text-white">
               <Cards />
           </div>
