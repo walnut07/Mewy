@@ -1,7 +1,8 @@
+import SignUp from "../organisms/SignUp";
 
 const Post = () => {
   return (
-      <h1>This is Post</h1>
+      <SignUp />
   );
 };
 
