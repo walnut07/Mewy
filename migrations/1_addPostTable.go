@@ -8,8 +8,8 @@ import (
 
 func init() {
 	migrations.MustRegisterTx(func(db migrations.DB) error {
-		fmt.Println("creating table post...")
-		_, err := db.Exec(`CREATE TABLE post(
+		fmt.Println("creating table posts...")
+		_, err := db.Exec(`CREATE TABLE posts(
       id SERIAL PRIMARY KEY,
 			userId TEXT NOT NULL,
       imageUrl TEXT NOT NULL,
@@ -21,8 +21,8 @@ func init() {
     )`)
 		return err
 	}, func(db migrations.DB) error {
-		fmt.Println("dropping table post...")
-		_, err := db.Exec(`DROP TABLE post`)
+		fmt.Println("dropping table posts...")
+		_, err := db.Exec(`DROP TABLE posts`)
 		return err
 	})
 }
