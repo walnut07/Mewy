@@ -1,7 +1,9 @@
 import { auth } from "../../../service/firebase";
 import Button from 'react-bootstrap/Button';
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import React from "react";
+import { useAuthContext } from '../../../context/Authcontext';
 
 interface Props {
 
@@ -9,7 +11,9 @@ interface Props {
 
 const SignIn: React.FC<Props> = ({}) => {
   const [errorMessage, setErrorMessage] = useState<string|null>();
-  
+  const navigate = useNavigate();
+  const { user } = useAuthContext();
+
   const handleSignIn = async () => {
     const form: any = document.forms[0];
     const email = form[0].value;
@@ -27,15 +31,22 @@ const SignIn: React.FC<Props> = ({}) => {
     }
   }
 
-
-  return (
-    <React.Fragment>
-      <Button variant="primary" type="button" onClick={handleSignIn}>
-        Sign In
-      </Button>
-      <span>{errorMessage}</span>
-    </React.Fragment>
-  );
+  if (user) {
+    return (
+      <>
+      {navigate("/form")}
+      </>
+    )
+  } else {
+    return (
+      <React.Fragment>
+        <Button variant="primary" type="button" onClick={handleSignIn}>
+          Sign In
+        </Button>
+        <span>{errorMessage}</span>
+      </React.Fragment>
+    );
+  }
 
 };
 
