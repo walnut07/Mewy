@@ -1,7 +1,7 @@
 package store
 
 type Post struct {
-	Base64      string
+	ImageUrl    string
 	Latitude    string
 	Longtitude  string
 	Description string

@@ -15,7 +15,7 @@ func post(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK, gin.H{
-		"base64":      post.Base64,
+		"imageUrl":    post.ImageUrl,
 		"latitude":    post.Latitude,
 		"longtitude":  post.Longtitude,
 		"description": post.Description,
