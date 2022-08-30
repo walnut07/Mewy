@@ -1,7 +1,10 @@
+import Form from "../organisms/Form";
 
 const Post = () => {
   return (
-      <h1>This is Post</h1>
+    <section>
+      <Form />
+    </section>
   );
 };
 
