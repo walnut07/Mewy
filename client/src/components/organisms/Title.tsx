@@ -14,7 +14,7 @@ const Title = () => {
       </Row>
       <Row>
         <Col>
-          <PostMolecule />
+          {/* <PostMolecule /> */}
         </Col>
         <Col>
           <ExploreMolecule />

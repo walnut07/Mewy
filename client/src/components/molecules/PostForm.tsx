@@ -4,18 +4,18 @@ import Photo from "./form/Photo";
 import Location from "./form/Location";
 import Description from "./form/Description";
 import PostButton from "./buttons/Post";
-// 
-// Create Locataion/Description/PostButton
-// 
+import { useState } from "react";
+
 const PostForm = () => {
+  const [base64, setBase64] = useState<string>("");
 
   return (
-    <Form>
+    <Form name="post-form">
       <Card />
-      <Photo />
+      <Photo setBase64={setBase64}/>
       <Location />
       <Description />
-      <PostButton/>
+      <PostButton base64={base64}/>
     </Form>
   );
 
