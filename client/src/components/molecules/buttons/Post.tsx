@@ -3,7 +3,11 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from "react-router-dom"
 
-const Post = () => {
+interface Props {
+
+}
+
+const Post: React.FC<Props> = ({}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
