@@ -14,6 +14,11 @@ func post(ctx *gin.Context) {
 		return
 	}
 
+	if err := store.AddPost(post); err != nil {
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
 	ctx.JSON(http.StatusOK, gin.H{
 		"imageUrl":    post.ImageUrl,
 		"latitude":    post.Latitude,
