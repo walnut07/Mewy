@@ -1,5 +1,5 @@
 import Form from 'react-bootstrap/Form';
-import SignUpButton from "../molecules/buttons/SignUp";
+import SignUpButton from "../molecules/form/HandleSignUp";
 import Email from "../molecules/form/Email";
 import Password from "../molecules/form/Password";
 

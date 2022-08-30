@@ -1,4 +1,3 @@
-import "../../../Style.css";
 import Button from 'react-bootstrap/Button';
 import { auth } from "../../../service/firebase";
 
