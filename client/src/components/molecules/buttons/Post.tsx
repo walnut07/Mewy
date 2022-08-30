@@ -44,11 +44,10 @@ const Post: React.FC<Props> = ({setError, image, setProgress, setImageUrl, image
         })
       } catch (err) {
         console.log(err);
+      } finally {
+        console.log("---- response ---- ")
+        console.log(response);
       }
-
-      console.log("---- response ---- ")
-      console.log(response);
-      
     }
 
     setError("");
