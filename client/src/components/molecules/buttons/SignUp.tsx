@@ -5,16 +5,16 @@ interface Props {
 
 }
 
-const SignIn: React.FC<Props> = ({}) => {
+const SignUp: React.FC<Props> = ({}) => {
 
   return (
-    <Link to={'/signin'}>
+    <Link to={'/signup'}>
       <Button variant="primary" type="button">
-        Sign In
+        Sign Up
       </Button>
     </Link>
   );
 
 };
 
-export default SignIn;
+export default SignUp;

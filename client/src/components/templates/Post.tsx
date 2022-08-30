@@ -1,8 +1,10 @@
-import SignUp from "../organisms/SignUp";
+import Form from "../organisms/Form";
 
 const Post = () => {
   return (
-      <SignUp />
+    <section>
+      <Form />
+    </section>
   );
 };
 
