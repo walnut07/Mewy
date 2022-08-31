@@ -19,9 +19,9 @@ func setRouter() *gin.Engine {
 	// Create API route group
 	api := router.Group("/api")
 	{
-		// api.POST("/signup", signUp)
-		// api.POST("/signin", signIn)
 		api.POST("/post", post)
+		api.GET("/list", getlatestPosts)
+
 	}
 	router.NoRoute(func(ctx *gin.Context) { ctx.JSON(http.StatusNotFound, gin.H{}) })
 

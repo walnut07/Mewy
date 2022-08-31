@@ -1,7 +1,12 @@
+import Title from "../molecules/Title";
+import CardList from "../organisms/CardList";
 
 const List = () => {
   return (
-      <h1>This is List</h1>
+    <>
+      <Title />
+      <CardList/>
+    </>
   );
 };
 
