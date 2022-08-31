@@ -1,4 +1,6 @@
 import Card from "../molecules/Card";
+import axios from "axios";
+import { useEffect } from "react";
 
 interface Post {
   userId: string;
@@ -14,6 +16,7 @@ interface Props {
 }
 
 const CardList = () => {
+  const BASE_URL = process.env.BASE_URL || "http://localhost:8080"
 
   // Test data
   const dummy = [
@@ -37,6 +40,26 @@ const CardList = () => {
     }
   
   ]
+
+  const getLatestPosts = async (limit: number) => {
+    let response;
+    try {
+      response = await axios.get(`${BASE_URL}/list`, {
+        params: {
+          limit: limit
+        }
+      })
+    } catch (err) {
+      console.log(err);
+    } finally {
+      console.log("🌟🌟🌟 response 🌟🌟🌟")
+      console.log(response);
+    }
+  }
+
+  useEffect(() => {
+    getLatestPosts(10);
+  }, []);
 
   return (
     <section className="flex-wrap">
