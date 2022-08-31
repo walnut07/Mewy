@@ -1,5 +1,5 @@
 import "../../Style.css";
-import Title from "../organisms/Title";
+import Title from "../organisms/MainLeft";
 import Cards from "../organisms/Cards";
 
 const Home = () => {
