@@ -1,7 +1,7 @@
 import "../../../Style.css";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import  { storage } from "../../../service/firebase";
 import 'firebase/storage'; 
@@ -16,16 +16,13 @@ interface Props {
 }
 
 interface postResponse {
-  imageUrl: string;
-	Latitude: string;
-	Longtitude: string;
-	Description: string;
+  status: string
 }
 
 const Post: React.FC<Props> = ({setError, image, setProgress, setImageUrl, imageUrl}) => {
   const BASE_URL = process.env.BASE_URL || "http://localhost:8080"
   const navigate = useNavigate();
-  const { user } = useAuthContext();
+  const { user, isPostSuccess, setIsPostSuccess } = useAuthContext();
 
   const handleSubmit = async () => {
 
@@ -40,8 +37,8 @@ const Post: React.FC<Props> = ({setError, image, setProgress, setImageUrl, image
       let response;
       try {
         response = await axios.post<postResponse>(`${BASE_URL}/api/post`, {
-          userId: "TODO",
-          imageUrl: userId,
+          userId: userId,
+          imageUrl: imageUrl,
           latitude: latitude,
           longitude: longitude,
           description: description
@@ -49,8 +46,10 @@ const Post: React.FC<Props> = ({setError, image, setProgress, setImageUrl, image
       } catch (err) {
         console.log(err);
       } finally {
-        console.log("---- response ---- ")
-        console.log(response);
+        if (response?.statusText === "OK") {
+          await setIsPostSuccess(true);
+          navigate("/list");
+        }
       }
     }
 
@@ -93,7 +92,7 @@ const Post: React.FC<Props> = ({setError, image, setProgress, setImageUrl, image
   return (
     <Button variant="primary" type="button" onClick={handleSubmit}>
       Post
-    </Button>
+    </Button> 
   );
 };
 
