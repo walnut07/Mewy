@@ -1,6 +1,6 @@
 import React from "react";
 import TitleMolecule from "../molecules/Title";
-import PostMolecule from "../molecules/buttons/Post";
+import PostButton from "../molecules/buttons/GoPost";
 import ExploreMolecule from "../molecules/buttons/Explore";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -14,7 +14,7 @@ const Title = () => {
       </Row>
       <Row>
         <Col>
-          <PostMolecule />
+          <PostButton />
         </Col>
         <Col>
           <ExploreMolecule />
