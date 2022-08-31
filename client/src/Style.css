@@ -50,6 +50,18 @@
   color: #35bdff; 
 }
 
-.text-indigo{
+.text-indigo {
   color: #000633;
+}
+
+.text-white {
+  color: #d7e0f4;
+}
+
+.text-light-pink {
+  color: #F386B4;
+}
+
+.blockquote-footer::before {
+  color: #F386B4;
 }
