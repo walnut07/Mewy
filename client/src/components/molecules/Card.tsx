@@ -2,13 +2,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 
 interface Props {
-  userId?: string;
-  imageUrl?: string;
-  latitude?: number;
-  longitude?: number;
+  userId: string;
+  imageUrl: string;
+  latitude: number;
+  longitude: number;
   description?: string;
-  createdAt?: string;
-  modifiedAt?: string;
+  createdAt: string;
+  modifiedAt: string;
 }
 
 const PhotoCard: React.FC<Props>  = ({userId, imageUrl, latitude, longitude, description, createdAt, modifiedAt}) => {

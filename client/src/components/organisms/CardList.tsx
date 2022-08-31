@@ -1,14 +1,15 @@
 import Card from "../molecules/Card";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface Post {
-  userId: string;
-  latitude: number;
-  longitude: number;
-  description?: string;
-  createdAt: string;
-  modifiedAt: string;
+  UserId: string;
+  ImageUrl: string;
+  Latitude: number;
+  Longitude: number;
+  Description?: string;
+  CreatedAt: string;
+  ModifiedAt: string;
 }
 
 interface Props {
@@ -17,32 +18,10 @@ interface Props {
 
 const CardList = () => {
   const BASE_URL = process.env.BASE_URL || "http://localhost:8080"
-
-  // Test data
-  const dummy = [
-    {
-      userId: "taensj",
-      imageUrl: "https://firebasestorage.googleapis.com/v0/b/mewy-d966b.appspot.com/o/images%2Fjavascript.png?alt=media&token=b5e65ea6-d412-4e5b-9f18-fde8d742e5e0",
-      latitude: 10.2242,
-      longitude: 24.4124,
-      description: "kawaii",
-      createdAt: "2022-08-31 14:22:24.969143+09",
-      modifiedAt: "2022-08-31 14:22:24.969143+09",
-    },
-    {
-      userId: "geasj",
-      imageUrl: "https://firebasestorage.googleapis.com/v0/b/mewy-d966b.appspot.com/o/images%2Fjavascript.png?alt=media&token=b5e65ea6-d412-4e5b-9f18-fde8d742e5e0",
-      latitude: 19.2242,
-      longitude: 240.4124,
-      description: "kimoi",
-      createdAt: "2022-08-31 14:22:24.969143+09",
-      modifiedAt: "2022-08-31 14:22:24.969143+09",
-    }
-  
-  ]
+  const [latestPosts, setLatestPosts] = useState<Post[]>([]);
 
   const getLatestPosts = async (limit: number) => {
-    let response;
+    let response: any;
     try {
       response = await axios.get(`${BASE_URL}/api/list`, {
         params: {
@@ -52,8 +31,9 @@ const CardList = () => {
     } catch (err) {
       console.log(err);
     } finally {
-      console.log("🌟🌟🌟 response 🌟🌟🌟")
-      console.log(response);
+      const result = JSON.parse(response.request.response);
+      const posts: Post[] = result["result"];
+      setLatestPosts(posts);
     }
   }
 
@@ -63,8 +43,9 @@ const CardList = () => {
 
   return (
     <section className="flex-wrap">
-      {dummy.map(post => {
-        return <Card userId={post.userId} imageUrl={post.imageUrl} latitude={post.latitude} longitude={post.longitude} description={post.description} createdAt={post.createdAt} modifiedAt={post.modifiedAt}/>
+      {latestPosts.map(post => {
+        console.log(post.ImageUrl)
+        return <Card userId={post.UserId} imageUrl={post.ImageUrl} latitude={post.Latitude} longitude={post.Longitude} description={post.Description} createdAt={post.CreatedAt} modifiedAt={post.ModifiedAt}/>
       })}
     </section>
   );
