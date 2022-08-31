@@ -1,24 +1,18 @@
 package store
 
-import "time"
-
-// type Post struct {
-// 	ID       int
-// 	Username string
-// 	// ImageUrl    string
-// 	// Latitude    string
-// 	// Longitude   string
-// 	// Description string
-// 	// CreatedAt   time.Time
-// 	// ModifiedAt  time.Time
-// }
+import (
+	"time"
+)
 
 type Post struct {
-	ID         int
-	Username   string `binding:"required,min=5,max=30"`
-	Password   string `binding:"required,min=7,max=32"`
-	CreatedAt  time.Time
-	ModifiedAt time.Time
+	ID          int
+	UserId      string
+	ImageUrl    string
+	Latitude    float32
+	Longitude   float32
+	Description string
+	CreatedAt   time.Time
+	ModifiedAt  time.Time
 }
 
 func AddPost(post *Post) error {

@@ -15,7 +15,6 @@ func post(ctx *gin.Context) {
 	}
 
 	if err := store.AddPost(post); err != nil {
-		print("fooo")
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}

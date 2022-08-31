@@ -28,7 +28,7 @@ func main() {
 
 	store.SetDBConnection(database.NewDBOptions())
 	db := store.GetDBConnection()
-
+	fmt.Println(db)
 	oldVersion, newVersion, err := migrations.Run(db, flag.Args()...)
 	if err != nil {
 		exitf(err.Error())
