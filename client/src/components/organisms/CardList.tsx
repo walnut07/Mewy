@@ -44,7 +44,7 @@ const CardList = () => {
   const getLatestPosts = async (limit: number) => {
     let response;
     try {
-      response = await axios.get(`${BASE_URL}/list`, {
+      response = await axios.get(`${BASE_URL}/api/list`, {
         params: {
           limit: limit
         }
