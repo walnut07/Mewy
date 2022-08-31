@@ -14,7 +14,7 @@ interface Props {
 const PhotoCard: React.FC<Props>  = ({userId, imageUrl, latitude, longitude, description, createdAt, modifiedAt}) => {
   return (
     <Card className="card-width card-margin bg-purple-gradient">
-    <Card.Img variant="top" src={imageUrl} className="content-fit img-margin"/>
+    <Card.Img variant="top" src={`${imageUrl}`} className="content-fit img-margin"/>
     <Card.Body>
       <footer className="blockquote-footer">
             {description} 
