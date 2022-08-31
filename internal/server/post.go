@@ -3,6 +3,7 @@ package server
 import (
 	"Mewy/internal/store"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -22,4 +23,27 @@ func post(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"message": "success",
 	})
+}
+
+func getlatestPosts(ctx *gin.Context) {
+	param := ctx.Query("limit")
+	limit, err := strconv.Atoi(param)
+
+	if err != nil {
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"err": err.Error()})
+		return
+	}
+
+	if err := ctx.Bind(limit); err != nil {
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"err": err.Error()})
+		return
+	}
+
+	posts, err := store.GetLatestPosts(limit)
+	if err != nil {
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"result": posts})
 }
