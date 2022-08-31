@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios";
 import  { storage } from "../../../service/firebase";
 import 'firebase/storage'; 
+import { useAuthContext } from "../../../context/Authcontext";
 
 interface Props {
   setError: Function;
@@ -24,22 +25,25 @@ interface postResponse {
 const Post: React.FC<Props> = ({setError, image, setProgress, setImageUrl, imageUrl}) => {
   const BASE_URL = process.env.BASE_URL || "http://localhost:8080"
   const navigate = useNavigate();
+  const { user } = useAuthContext();
 
   const handleSubmit = async () => {
 
     const submitData = async () => {
       const form:any = document.forms[0];
-      const location: string = form[2].value.split(",");
-      const latitude: string = location[0];
-      const longtitude: string = location[1];
+      let location: number[] = form[2].value.replace(" ", "").split(",").map(Number);
+      const latitude: number = location[0];
+      const longitude: number = location[1];
       const description: string = form[3].value;
-  
+      const userId = user.uid;
+
       let response;
       try {
         response = await axios.post<postResponse>(`${BASE_URL}/api/post`, {
-          imageUrl: imageUrl,
+          userId: "TODO",
+          imageUrl: userId,
           latitude: latitude,
-          longtitude: longtitude,
+          longitude: longitude,
           description: description
         })
       } catch (err) {
