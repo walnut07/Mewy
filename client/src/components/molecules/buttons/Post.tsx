@@ -6,6 +6,7 @@ import axios from "axios";
 import  { storage } from "../../../service/firebase";
 import 'firebase/storage'; 
 import { useAuthContext } from "../../../context/Authcontext";
+import { useEffect } from "react";
 
 interface Props {
   setError: Function;
@@ -24,34 +25,39 @@ const Post: React.FC<Props> = ({setError, image, setProgress, setImageUrl, image
   const navigate = useNavigate();
   const { user, isPostSuccess, setIsPostSuccess } = useAuthContext();
 
-  const handleSubmit = async () => {
+  const submitData = async () => {
+    console.log("💖 Here's the image url:")
+    console.log(imageUrl);
+    const form:any = document.forms[0];
+    let location: number[] = form[2].value.replace(" ", "").split(",").map(Number);
+    const latitude: number = location[0];
+    const longitude: number = location[1];
+    const description: string = form[3].value;
+    const userId = user.uid;
 
-    const submitData = async () => {
-      const form:any = document.forms[0];
-      let location: number[] = form[2].value.replace(" ", "").split(",").map(Number);
-      const latitude: number = location[0];
-      const longitude: number = location[1];
-      const description: string = form[3].value;
-      const userId = user.uid;
-
-      let response;
-      try {
-        response = await axios.post<postResponse>(`${BASE_URL}/api/post`, {
-          userId: userId,
-          imageUrl: imageUrl,
-          latitude: latitude,
-          longitude: longitude,
-          description: description
-        })
-      } catch (err) {
-        console.log(err);
-      } finally {
-        if (response?.statusText === "OK") {
-          await setIsPostSuccess(true);
-          navigate("/list");
-        }
+    let response;
+    try {
+      response = await axios.post<postResponse>(`${BASE_URL}/api/post`, {
+        userId: userId,
+        imageUrl: imageUrl,
+        latitude: latitude,
+        longitude: longitude,
+        description: description
+      })
+      if (response?.statusText === "OK") {
+        await setIsPostSuccess(true);
+        navigate("/list");
       }
-    }
+    } catch (err) {
+      console.log(err);
+    } 
+  }
+
+  useEffect(() => {
+    if (imageUrl) submitData();
+  }, [imageUrl])
+
+  const handleSubmit = async () => {
 
     setError("");
     if (image === "") {
@@ -80,13 +86,13 @@ const Post: React.FC<Props> = ({setError, image, setProgress, setImageUrl, image
       },
       () => {
         upLoadTask.snapshot.ref.getDownloadURL().then(async (downloadURL) => {
-          console.log("File available at", downloadURL);
+          console.log("download success?");
+          console.log(downloadURL);
           await setImageUrl(downloadURL);
-          await submitData();
-        });
+        })
       }
     )
-
+      
   };
 
   return (
