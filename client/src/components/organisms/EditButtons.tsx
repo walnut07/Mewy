@@ -1,4 +1,4 @@
-import EditButton from "../molecules/buttons/GoPost";
+import PostButton from "../molecules/buttons/GoPost";
 import SignUpButton from "../molecules/buttons/SignUp";
 import SignInButton from "../molecules/buttons/SignIn";
 import { useAuthContext } from '../../context/Authcontext';
@@ -19,7 +19,7 @@ const EditButtons: React.FC<Props>  = ({postId, userId, imageUrl, description, l
 
   return (
     <div>
-      {user && <EditButton text={"Edit"}postId={postId} userId={userId} imageUrl={imageUrl} description={description}latitude={latitude} longitude={longitude} createdAt={createdAt} modifiedAt={modifiedAt}/>}
+      {user && <PostButton text={"Edit"} postId={postId} userId={userId} imageUrl={imageUrl} description={description}latitude={latitude} longitude={longitude} createdAt={createdAt} modifiedAt={modifiedAt}/>}
       {!user && <SignUpButton />}
       {!user && <SignInButton />}
     </div>
