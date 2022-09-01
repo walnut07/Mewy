@@ -39,7 +39,7 @@ const PhotoCard: React.FC<Props>  = ({postId, userId, imageUrl, latitude, longit
       }
 
       {state && 
-      <Card className="card-width card-margin bg-purple-gradient pointer" id={String(state.postId)} onClick={handleClick}>
+      <Card className="card-width card-margin bg-purple-gradient pointer card" id={String(state.postId)} onClick={handleClick}>
         <Card.Img variant="top" src={state.imageUrl} className="content-fit img-margin" id={String(postId)}/>
         <Card.Body id={String(state.postId)}>
           <p className="text-white">{state.description}</p>
