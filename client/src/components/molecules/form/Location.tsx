@@ -3,7 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-function FormFileExample() {
+interface Props {
+  isEdit?: boolean;
+}
+
+function FormFileExample: React.FC<Props> ({isEdit}) {
   const [currentLocation , setCurrentLocation] = useState<string[]|null>();
 
   const options = {
@@ -35,7 +39,8 @@ function FormFileExample() {
         <Button variant="outline-secondary" id="button-addon1" onClick={getCurrentLocation}>
           Current Location
         </Button>
-        {currentLocation && 
+
+        {currentLocation && !isEdit &&
           <Form.Control
           aria-label="The current location's latitude and longtitude"
           disabled
