@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from "axios";
 import Card from "../molecules/Card";
+import Buttons from "../organisms/EditButtons";
 
 interface Post {
   ID: number;
@@ -51,6 +52,10 @@ const SinglePhoto: React.FC<Props> = ({}) => {
     <div className='single-photo'>
       {post && 
       <Card postId={post.ID} userId={post.UserId} imageUrl={post.ImageUrl} description={post.Description}latitude={post.Latitude} longitude={post.Longitude} createdAt={post.CreatedAt} modifiedAt={post.ModifiedAt} />
+      }
+
+      {post &&
+      <Buttons postId={post.ID} userId={post.UserId} imageUrl={post.ImageUrl} description={post.Description}latitude={post.Latitude} longitude={post.Longitude} createdAt={post.CreatedAt} modifiedAt={post.ModifiedAt}/>
       }
     </div>
   );

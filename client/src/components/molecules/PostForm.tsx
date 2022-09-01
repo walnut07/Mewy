@@ -5,9 +5,27 @@ import Location from "./form/Location";
 import Description from "./form/Description";
 import PostButton from "./buttons/Post";
 import { useState } from "react";
+import { useLocation } from 'react-router-dom';
 
-const PostForm = () => {
+interface Props {
 
+}
+
+interface Location {
+  postId: number;
+  userId: string;
+  imageUrl: string;
+  description: string|undefined;
+  latitude: number;
+  longitude: number;
+  createdAt: string;
+  modifiedAt: string;
+}
+
+
+const PostForm: React.FC<Props>  = ({}) => {
+  const location = useLocation();
+  const state: Location|unknown = location.state;
   const [base64, setBase64] = useState<string>("");
   const [image, setImage] = useState<any>("");
   const [imageUrl, setImageUrl] = useState<string>("");
@@ -27,7 +45,7 @@ const PostForm = () => {
 
   return (
     <Form name="post-form">
-      <Card postId={data.ID} userId={data.userId} imageUrl={data.imageUrl} latitude={data.latitude} longitude={data.longitude} description={data.description} createdAt={data.createdAt} modifiedAt={data.modifiedAt}/>
+      <Card postId={data.ID} userId={data.userId} imageUrl={data.imageUrl} latitude={data.latitude} longitude={data.longitude} description={data.description} createdAt={data.createdAt} modifiedAt={data.modifiedAt} state={state} />
       <Photo setImage={setImage} setError={setError} />
       <Location />
       <Description />
