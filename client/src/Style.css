@@ -65,3 +65,8 @@
 .blockquote-footer::before {
   color: #F386B4;
 }
+
+.pointer:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
