@@ -34,8 +34,10 @@ const SinglePhoto: React.FC<Props> = ({}) => {
     } catch (err) {
       console.log(err);
     } finally {
-      const result = JSON.parse(response.request.response);
-      return result;
+      const data = JSON.parse(response.request.response);
+      const result = data["result"];
+      console.log(result);
+      setPost(result);
     }
   }
 
@@ -48,7 +50,7 @@ const SinglePhoto: React.FC<Props> = ({}) => {
   return (
     <div className='single-photo'>
       {post && 
-      <Card postId={post.ID} userId={post.UserId} imageUrl={post.ImageUrl} latitude={post.Latitude} longitude={post.Longitude} createdAt={post.CreatedAt} modifiedAt={post.ModifiedAt} />
+      <Card postId={post.ID} userId={post.UserId} imageUrl={post.ImageUrl} description={post.Description}latitude={post.Latitude} longitude={post.Longitude} createdAt={post.CreatedAt} modifiedAt={post.ModifiedAt} />
       }
     </div>
   );
