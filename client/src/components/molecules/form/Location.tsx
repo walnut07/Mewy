@@ -7,7 +7,7 @@ interface Props {
   isEdit?: boolean;
 }
 
-function FormFileExample: React.FC<Props> ({isEdit}) {
+const FormFileExample: React.FC<Props> = ({isEdit}) => {
   const [currentLocation , setCurrentLocation] = useState<string[]|null>();
 
   const options = {
