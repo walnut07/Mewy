@@ -21,17 +21,30 @@ func AddPost(post *Post) (int, error) {
 	if err != nil {
 		return -1, err
 	}
-	fmt.Println("ID is")
-	fmt.Println(post.ID)
 	return post.ID, nil
 }
 
 func GetLatestPosts(limit int) ([]*Post, error) {
 	var latestPosts []*Post
-	fmt.Println(limit)
 	err := db.Model(&latestPosts).Order("modified_at DESC").Limit(limit).Select()
 	if err != nil {
 		return nil, err
 	}
 	return latestPosts, nil
+}
+
+func GetSinglePost(id int) (*Post, error) {
+	var post []*Post
+
+	err := db.Model(&post).Where("id = ?", id).Select()
+	if err != nil {
+		return nil, err
+	}
+
+	if len(post) == 0 {
+		return nil, fmt.Errorf("invalid post ID")
+	}
+
+	return post[0], nil
+
 }

@@ -21,8 +21,10 @@ func setRouter() *gin.Engine {
 	{
 		api.POST("/post", post)
 		api.GET("/list", getlatestPosts)
-
+		api.GET("/single", getSinglePhoto)
+		// TODO: Get the endpoints cleaner
 	}
+
 	router.NoRoute(func(ctx *gin.Context) { ctx.JSON(http.StatusNotFound, gin.H{}) })
 
 	return router

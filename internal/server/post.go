@@ -48,3 +48,21 @@ func getlatestPosts(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, gin.H{"result": posts})
 }
+
+func getSinglePhoto(ctx *gin.Context) {
+	param := ctx.Query("id")
+	id, err := strconv.Atoi(param)
+
+	if err != nil {
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"err": err.Error()})
+		return
+	}
+
+	post, err := store.GetSinglePost(id)
+	if err != nil {
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"result": post})
+}
