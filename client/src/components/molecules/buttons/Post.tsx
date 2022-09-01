@@ -17,7 +17,8 @@ interface Props {
 }
 
 interface postResponse {
-  status: string
+  status: string;
+  postId: number;
 }
 
 const Post: React.FC<Props> = ({setError, image, setProgress, setImageUrl, imageUrl}) => {
@@ -45,8 +46,9 @@ const Post: React.FC<Props> = ({setError, image, setProgress, setImageUrl, image
         description: description
       })
       if (response?.statusText === "OK") {
+        const postId = await response.data["postId"];
         await setIsPostSuccess(true);
-        navigate("/list");
+        navigate(`/list/:${postId}`);
       }
     } catch (err) {
       console.log(err);

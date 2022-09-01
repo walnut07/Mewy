@@ -15,6 +15,7 @@ const PostForm = () => {
   const [progress, setProgress] = useState<number>(100);
 
   const data = {
+      ID: -1,
       userId: "model",
       imageUrl: "https://firebasestorage.googleapis.com/v0/b/mewy-d966b.appspot.com/o/images%2Fgolang.png?alt=media&token=c23cceb5-703f-4d60-a7fb-8d4b94b6877a",
       latitude: 12.04042,
@@ -26,7 +27,7 @@ const PostForm = () => {
 
   return (
     <Form name="post-form">
-      <Card userId={data.userId} imageUrl={data.imageUrl} latitude={data.latitude} longitude={data.longitude} description={data.description} createdAt={data.createdAt} modifiedAt={data.modifiedAt}/>
+      <Card postId={data.ID} userId={data.userId} imageUrl={data.imageUrl} latitude={data.latitude} longitude={data.longitude} description={data.description} createdAt={data.createdAt} modifiedAt={data.modifiedAt}/>
       <Photo setImage={setImage} setError={setError} />
       <Location />
       <Description />
