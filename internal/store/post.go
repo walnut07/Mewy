@@ -16,12 +16,14 @@ type Post struct {
 	ModifiedAt  time.Time
 }
 
-func AddPost(post *Post) error {
+func AddPost(post *Post) (int, error) {
 	_, err := db.Model(post).Returning("*").Insert()
 	if err != nil {
-		return err
+		return -1, err
 	}
-	return nil
+	fmt.Println("ID is")
+	fmt.Println(post.ID)
+	return post.ID, nil
 }
 
 func GetLatestPosts(limit int) ([]*Post, error) {

@@ -15,13 +15,14 @@ func post(ctx *gin.Context) {
 		return
 	}
 
-	if err := store.AddPost(post); err != nil {
+	id, err := store.AddPost(post)
+	if err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	ctx.JSON(http.StatusOK, gin.H{
-		"message": "success",
+		"postId": id,
 	})
 }
 
