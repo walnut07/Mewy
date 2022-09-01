@@ -6,14 +6,15 @@ import axios from "axios";
 import  { storage } from "../../../service/firebase";
 import 'firebase/storage'; 
 import { useAuthContext } from "../../../context/Authcontext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
+  isEdit?: boolean;
   setError: Function;
   image: any;
   setProgress: Function;
   setImageUrl: Function;
-  imageUrl: string
+  imageUrl: string;
 }
 
 interface postResponse {
@@ -21,11 +22,12 @@ interface postResponse {
   postId: number;
 }
 
-const Post: React.FC<Props> = ({setError, image, setProgress, setImageUrl, imageUrl}) => {
+const Post: React.FC<Props> = ({isEdit, setError, image, setProgress, setImageUrl, imageUrl}) => {
   const BASE_URL = process.env.BASE_URL || "http://localhost:8080"
   const navigate = useNavigate();
   const { user, isPostSuccess, setIsPostSuccess } = useAuthContext();
-
+  const [isPatchSuccess, setIsPatchSuccess] = useState<boolean>(false);
+  
   const submitData = async () => {
     console.log("💖 Here's the image url:")
     console.log(imageUrl);
@@ -55,12 +57,7 @@ const Post: React.FC<Props> = ({setError, image, setProgress, setImageUrl, image
     } 
   }
 
-  useEffect(() => {
-    if (imageUrl) submitData();
-  }, [imageUrl])
-
-  const handleSubmit = async () => {
-
+  const uploadImage = () => {
     setError("");
     if (image === "") {
       console.log("File not selected");
@@ -94,12 +91,58 @@ const Post: React.FC<Props> = ({setError, image, setProgress, setImageUrl, image
         })
       }
     )
-      
+  }
+
+  const editPost = async () => {
+    const form:any = document.forms[0];
+    let location: number[]|undefined = form[2].value.replace(" ", "").split(",").map(Number);
+    let latitude, longitude;
+    if (location != undefined) {
+      latitude = location[0];
+      longitude = location[1];
+    }
+    let description;
+    let descriptionTemp: string|undefined = form[3].value;
+    if (descriptionTemp != undefined) {
+      const description: string = descriptionTemp;
+    }
+    const userId = user.uid;
+
+    let response;
+    try {
+      response = await axios.patch(`${BASE_URL}/api/post`, {
+        userId: userId,
+        imageUrl: imageUrl,
+        latitude: latitude,
+        longitude: longitude,
+        description: description
+      })
+      if (response?.statusText === "OK") {
+        const postId = await response.data["postId"];
+        setIsPatchSuccess(true);
+        navigate(`/list/:${postId}`);
+      }
+    } catch (err) {
+      console.log(err);
+    } 
+  }
+
+  useEffect(() => {
+    if (imageUrl) submitData();
+  }, [imageUrl])
+
+  const handleSubmit = async () => {
+    if (isEdit) {
+      editPost();
+    } else {
+      uploadImage();
+    }
   };
 
   return (
     <Button variant="primary" type="button" onClick={handleSubmit}>
-      Post
+      {isEdit && "Update"}
+      {!isEdit && "Post"}
     </Button> 
   );
 };

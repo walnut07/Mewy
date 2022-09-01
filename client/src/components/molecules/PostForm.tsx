@@ -31,6 +31,9 @@ const PostForm: React.FC<Props>  = ({}) => {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [error, setError] = useState<any>("");
   const [progress, setProgress] = useState<number>(100);
+  const card = document.getElementsByClassName("card")[0];
+  const cardId = Number(card.id);
+  const isEdit = true ? cardId >= 0 : false;
 
   const data = {
       ID: -1,
@@ -49,7 +52,7 @@ const PostForm: React.FC<Props>  = ({}) => {
       <Photo setImage={setImage} setError={setError} />
       <Location />
       <Description />
-      <PostButton setError={setError} image={image} setProgress={setProgress} setImageUrl={setImageUrl} imageUrl={imageUrl}/>
+      <PostButton isEdit={isEdit} setError={setError} image={image} setProgress={setProgress} setImageUrl={setImageUrl} imageUrl={imageUrl}/>
     </Form>
   );
 
