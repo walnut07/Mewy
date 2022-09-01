@@ -49,7 +49,7 @@ const PostForm: React.FC<Props>  = ({}) => {
   return (
     <Form name="post-form">
       <Card postId={data.ID} userId={data.userId} imageUrl={data.imageUrl} latitude={data.latitude} longitude={data.longitude} description={data.description} createdAt={data.createdAt} modifiedAt={data.modifiedAt} state={state} />
-      <Photo setImage={setImage} setError={setError} />
+      { !isEdit && <Photo setImage={setImage} setError={setError} /> }
       <Location />
       <Description />
       <PostButton isEdit={isEdit} setError={setError} image={image} setProgress={setProgress} setImageUrl={setImageUrl} imageUrl={imageUrl}/>
