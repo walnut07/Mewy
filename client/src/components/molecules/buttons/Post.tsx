@@ -110,7 +110,7 @@ const Post: React.FC<Props> = ({isEdit, setError, image, setProgress, setImageUr
 
     let response;
     try {
-      response = await axios.patch(`${BASE_URL}/api/post`, {
+      response = await axios.patch(`${BASE_URL}/api/edit`, {
         userId: userId,
         imageUrl: imageUrl,
         latitude: latitude,
