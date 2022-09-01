@@ -22,6 +22,7 @@ func setRouter() *gin.Engine {
 		api.POST("/post", post)
 		api.GET("/list", getlatestPosts)
 		api.GET("/single", getSinglePhoto)
+		api.PATCH("")
 		// TODO: Get the endpoints cleaner
 	}
 
