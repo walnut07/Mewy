@@ -19,7 +19,7 @@ const EditButtons: React.FC<Props>  = ({postId, userId, imageUrl, description, l
 
   return (
     <div>
-      {user && <EditButton postId={postId} userId={userId} imageUrl={imageUrl} description={description}latitude={latitude} longitude={longitude} createdAt={createdAt} modifiedAt={modifiedAt}/>}
+      {user && <EditButton text={"Edit"}postId={postId} userId={userId} imageUrl={imageUrl} description={description}latitude={latitude} longitude={longitude} createdAt={createdAt} modifiedAt={modifiedAt}/>}
       {!user && <SignUpButton />}
       {!user && <SignInButton />}
     </div>
