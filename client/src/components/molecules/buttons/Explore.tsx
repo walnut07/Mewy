@@ -6,7 +6,7 @@ const Explore = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/list", { state: { id: 1 }})
+    navigate("/list/:-1", { state: { id: 1 }})
   }
 
   return (
