@@ -1,7 +1,16 @@
+import { useParams } from 'react-router';
 
-const SinglePhoto = () => {
+interface Props {
+
+}
+
+const SinglePhoto: React.FC<Props> = ({}) => {
+  const { id } = useParams();
+  
   return (
-      <h1>This is Single Photo</h1>
+      <>
+        <h1>This is Single Photo</h1><p>Id is {id}</p>
+      </>
   );
 };
 

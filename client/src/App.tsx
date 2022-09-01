@@ -17,9 +17,9 @@ function App() {
             <Route path="/" element={<Home />}/>
             <Route path="/signup" element={<SignUp />}/>
             <Route path="/signin" element={<SignIn />}/>
-            <Route path="/list" element={<List />}/>
+            <Route path="/list/:postId" element={<List />}/>
             <Route path="/post" element={<Post />}/>
-            <Route path="/single" element={<Single />}/>
+            <Route path="/photo/:id" element={<Single />}/>
           </Routes>
         </BrowserRouter>
       </AuthProvider>
