@@ -6,24 +6,25 @@ interface Props {
 }
 
 const Description: React.FC<Props> = ({isEdit, description}) => {
-  console.log(isEdit)
   return (
     <>
       <Form.Label htmlFor="inputDescription">Description</Form.Label>
-      ({isEdit} ?
+      {isEdit &&
         <Form.Control
         type="text"
         id="inputDescription"
         aria-describedby="description of the photo"
         defaultValue={description}
         />
-        :
+      }
+
+      {!isEdit &&
         <Form.Control
         type="text"
         id="inputDescription"
         aria-describedby="description of the photo"
         />
-      )
+      } 
     </>
   );
 }
