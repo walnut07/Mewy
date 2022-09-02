@@ -35,7 +35,7 @@ const PostForm: React.FC<Props>  = ({}) => {
   const cardId = Number(card.id);
   const isEdit = true ? cardId >= 0 : false;
 
-  const data = {
+  const sampleData = {
       ID: -1,
       userId: "model",
       imageUrl: "https://firebasestorage.googleapis.com/v0/b/mewy-d966b.appspot.com/o/images%2Fgolang.png?alt=media&token=c23cceb5-703f-4d60-a7fb-8d4b94b6877a",
@@ -48,10 +48,10 @@ const PostForm: React.FC<Props>  = ({}) => {
 
   return (
     <Form name="post-form">
-      <Card postId={data.ID} userId={data.userId} imageUrl={data.imageUrl} latitude={data.latitude} longitude={data.longitude} description={data.description} createdAt={data.createdAt} modifiedAt={data.modifiedAt} state={state} />
+      <Card postId={sampleData.ID} userId={sampleData.userId} imageUrl={sampleData.imageUrl} latitude={sampleData.latitude} longitude={sampleData.longitude} description={sampleData.description} createdAt={sampleData.createdAt} modifiedAt={sampleData.modifiedAt} state={state} />
       { !isEdit && <Photo setImage={setImage} setError={setError} /> }
-      <Location />
-      <Description />
+      <Location isEdit={isEdit}/>
+      <Description isEdit={isEdit}/>
       <PostButton isEdit={isEdit} setError={setError} image={image} setProgress={setProgress} setImageUrl={setImageUrl} imageUrl={imageUrl}/>
     </Form>
   );
