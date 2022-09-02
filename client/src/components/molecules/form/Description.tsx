@@ -1,6 +1,10 @@
 import Form from 'react-bootstrap/Form';
 
-function FormTextExample() {
+interface Props {
+  isEdit: boolean;
+}
+
+const Description: React.FC<Props> = ({isEdit}) => {
   return (
     <>
       <Form.Label htmlFor="inputDescription">Description</Form.Label>
@@ -13,4 +17,4 @@ function FormTextExample() {
   );
 }
 
-export default FormTextExample;
+export default Description;
