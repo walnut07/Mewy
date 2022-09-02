@@ -1,6 +1,9 @@
 # Meowy
 Meowy is a full-stack application where user can post photos after signing up!
 
+https://user-images.githubusercontent.com/90857923/188112421-a356d268-b981-4234-827d-2c587ddb8882.mov
+
+
 # Tech Stack
 - TypeScript
 - React
@@ -20,7 +23,7 @@ I did this project to expand my tech stack. In a more specified way, I wanted...
   - Navigate
 - To get familiar with Authentication with Firebase
 
-I worked on the project for four days without fully finishing all the features. But the goal was learning!
+I learned Go for the first time and build this app within only four days. I didn't fully finish all the features but the goal was learning!
 
 # Reflection
 
