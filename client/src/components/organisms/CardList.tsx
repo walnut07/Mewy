@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 interface Post {
+  ID: number;
   UserId: string;
   ImageUrl: string;
   Latitude: number;
@@ -44,8 +45,7 @@ const CardList = () => {
   return (
     <section className="flex-wrap">
       {latestPosts.map(post => {
-        console.log(post.ImageUrl)
-        return <Card userId={post.UserId} imageUrl={post.ImageUrl} latitude={post.Latitude} longitude={post.Longitude} description={post.Description} createdAt={post.CreatedAt} modifiedAt={post.ModifiedAt}/>
+        return <Card postId={post.ID} userId={post.UserId} imageUrl={post.ImageUrl} latitude={post.Latitude} longitude={post.Longitude} description={post.Description} createdAt={post.CreatedAt} modifiedAt={post.ModifiedAt}/>
       })}
     </section>
   );

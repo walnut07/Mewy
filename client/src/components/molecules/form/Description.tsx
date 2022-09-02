@@ -1,16 +1,32 @@
 import Form from 'react-bootstrap/Form';
 
-function FormTextExample() {
+interface Props {
+  isEdit?: boolean;
+  description?: string;
+}
+
+const Description: React.FC<Props> = ({isEdit, description}) => {
   return (
     <>
       <Form.Label htmlFor="inputDescription">Description</Form.Label>
-      <Form.Control
+      {isEdit &&
+        <Form.Control
         type="text"
         id="inputDescription"
         aria-describedby="description of the photo"
-      />
+        defaultValue={description}
+        />
+      }
+
+      {!isEdit &&
+        <Form.Control
+        type="text"
+        id="inputDescription"
+        aria-describedby="description of the photo"
+        />
+      } 
     </>
   );
 }
 
-export default FormTextExample;
+export default Description;
