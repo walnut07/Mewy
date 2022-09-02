@@ -5,9 +5,11 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 interface Props {
   isEdit?: boolean;
+  latitude?: number;
+  longitude?: number;
 }
 
-const FormFileExample: React.FC<Props> = ({isEdit}) => {
+const FormFileExample: React.FC<Props> = ({isEdit, latitude, longitude}) => {
   const [currentLocation , setCurrentLocation] = useState<string[]|null>();
 
   const options = {
@@ -42,10 +44,18 @@ const FormFileExample: React.FC<Props> = ({isEdit}) => {
 
         {currentLocation && !isEdit &&
           <Form.Control
-          aria-label="The current location's latitude and longtitude"
-          disabled
-          value={`${currentLocation[0]}, ${currentLocation[1]}`}
-        />}
+            aria-label="The current location's latitude and longtitude"
+            disabled
+            value={`${currentLocation![0]}, ${currentLocation![1]}`}
+          />
+        }
+        {isEdit && 
+          <Form.Control
+            aria-label="The current location's latitude and longtitude"
+            disabled
+            defaultValue={`${latitude}, ${longitude}`}
+          />
+        }
       </InputGroup>
     </>
   );
