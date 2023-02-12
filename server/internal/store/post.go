@@ -17,6 +17,7 @@ type Post struct {
 }
 
 func AddPost(post *Post) (int, error) {
+	// TODO(kurumi): Implement transaction
 	_, err := db.Model(post).Returning("*").Insert()
 	if err != nil {
 		return -1, err
@@ -25,6 +26,7 @@ func AddPost(post *Post) (int, error) {
 }
 
 func GetLatestPosts(limit int) ([]*Post, error) {
+	// TODO(kurumi): Implement transaction
 	var latestPosts []*Post
 	err := db.Model(&latestPosts).Order("modified_at DESC").Limit(limit).Select()
 	if err != nil {
@@ -34,6 +36,7 @@ func GetLatestPosts(limit int) ([]*Post, error) {
 }
 
 func GetSinglePost(id int) (*Post, error) {
+	// TODO(kurumi): Implement transaction
 	var post []*Post
 
 	err := db.Model(&post).Where("id = ?", id).Select()
