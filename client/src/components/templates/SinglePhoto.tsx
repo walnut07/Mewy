@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import axios from "axios";
-import Card from "../molecules/Card";
+
 import Buttons from "../organisms/EditButtons";
+import Card from "../molecules/Card";
+import axios from "axios";
+import { useParams } from 'react-router';
 
 interface Post {
   ID: number;
@@ -37,7 +38,6 @@ const SinglePhoto: React.FC<Props> = ({}) => {
     } finally {
       const data = JSON.parse(response.request.response);
       const result = data["result"];
-      console.log(result);
       setPost(result);
     }
   }
